@@ -36,20 +36,23 @@ head(av)
 Get the data into a format where the five columns for Death[1-5] are replaced by two columns: Time, and Death. Time should be a number between 1 and 5 (look into the function `parse_number`); Death is a categorical variables with values "yes", "no" and "". Call the resulting data set `deaths`. 
 
 ```{r}
-##Rephrasing Data:
-deaths <- av %>%
-  pivot_longer(cols = starts_with("Death"),
-               names_to = "Time",
-               values_to = "Death") %>%
-  mutate(Time = parse_number(gsub("Death", "", Time)),
-         Death = case_when(
-           Death == "YES" ~ "yes",
-           Death == "NO" ~ "no",
-           TRUE ~ ""
-         ))
+deaths <- av %>% select(
+  URL, 
+  Name.Alias,
+  starts_with("Death")
+) %>% pivot_longer(
+  cols = Death1:Death5,
+  names_to = "Time",
+  values_to = "Died"
+)
 
-head(deaths)
+deaths <- deaths %>% mutate(
+  Time = parse_number(Time)
+)
+
+deaths
 ```
+
 
 Similarly, deal with the returns of characters.
 
@@ -105,4 +108,4 @@ Upload your changes to the repository. Discuss and refine answers as a team.
 
 Amanda
 
-Quote from 
+" but only a 50 percent chance they recovered from a second or third death." 
