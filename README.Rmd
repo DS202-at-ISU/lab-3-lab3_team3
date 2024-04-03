@@ -91,9 +91,9 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 
 > Quote the statement you are planning to fact-check.
 
-*Ryan: "If a character is killed but then secretly hidden away in a stasis tube, they died."
+*[**Ryan**]{.underline}: "If a character is killed but then secretly hidden away in a stasis tube, they died."
 
-*Amanda:"but only a 50 percent chance they recovered from a second or third death." 
+*[**Amanda**]{.underline}:"but only a 50 percent chance they recovered from a second or third death."
 
 
 
@@ -115,4 +115,4 @@ Include at least one sentence discussing the result of your fact-checking endeav
 Upload your changes to the repository. Discuss and refine answers as a team.
 
 
-*Ryan:
+*[**Ryan**]{.underline}:
