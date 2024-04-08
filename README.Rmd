@@ -27,6 +27,7 @@ Extract from the data below two data sets in long form `deaths` and `returns`
 ```{r}
 library(dplyr)
 library(tidyr)
+library(tidyverse)
 
 av <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/avengers/avengers.csv", stringsAsFactors = FALSE)
 head(av)
@@ -103,7 +104,23 @@ Make sure to include the code to derive the (numeric) fact for the statement
 ```{r}
 ##Ryan's Code:
 
+##Filter charaecters who reported dead but returned:
+dead_characters <- deaths %>% 
+  filter(Death == "yes")
+returned_characters <- returns %>%
+  filter(Return == "yes")
 
+num_returned_after_death <- dead_characters %>%
+  filter(Name.Alias %in% returned_characters$Name.Alias) %>%
+  n_distinct()
+
+##Number of deaths excluding returned:
+num_actual_deaths <- n_distinct(dead_characters$Name.Alias) - num_returned_after_death
+
+##Average number of death per avenger:
+average_deaths <- num_actual_deaths / n_distinct(av$Name.Alias)
+
+average_deaths
 ```
 
 
@@ -115,4 +132,4 @@ Include at least one sentence discussing the result of your fact-checking endeav
 Upload your changes to the repository. Discuss and refine answers as a team.
 
 
-*[**Ryan**]{.underline}:
+*[**Ryan**]{.underline}: Based on my calculation with the R functions, after seeing that the average amount of deaths for a character who is killed but then hidden away in the status tube (return) is -0.037 (Close to 0), means that that character did indeed died and stay dead.
